@@ -1,0 +1,9 @@
+services:
+  drugstore-db:
+    image: postgres
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_DB=drugstore-db
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=123456
