@@ -1,10 +1,11 @@
-package br.com.fiap.FarmaNear_Register.infra;
+package br.com.fiap.FarmaNear_Register.infra.drugstore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
 
-@Entity
+@Entity(name = "drugstore")
 @Getter
 public class DrugstoreEntity {
 
@@ -13,18 +14,19 @@ public class DrugstoreEntity {
     private Integer cnpj;
     private String name;
     private String email;
-    private String password;
     private String phone;
+
+    @Column(name = "address_id")
     private Long addressId;
 
-    public DrugstoreEntity() {}
+    public DrugstoreEntity() {
+    }
 
-    public DrugstoreEntity(Long id, Integer cnpj, String name, String email, String password, String phone, Long addressId) {
+    public DrugstoreEntity(Long id, Integer cnpj, String name, String email, String phone, Long addressId) {
         this.id = id;
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phone = phone;
         this.addressId = addressId;
     }

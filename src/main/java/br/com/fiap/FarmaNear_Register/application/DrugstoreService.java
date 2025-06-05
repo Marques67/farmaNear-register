@@ -1,7 +1,7 @@
 package br.com.fiap.FarmaNear_Register.application;
 
 import br.com.fiap.FarmaNear_Register.application.dto.DrugstoreDto;
-import br.com.fiap.FarmaNear_Register.infra.DrugstoreRepository;
+import br.com.fiap.FarmaNear_Register.infra.drugstore.DrugstoreRepository;
 import org.springframework.stereotype.Service;
 
 @Service

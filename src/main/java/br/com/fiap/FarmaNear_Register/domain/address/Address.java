@@ -1,4 +1,4 @@
-package br.com.fiap.FarmaNear_Register.domain;
+package br.com.fiap.FarmaNear_Register.domain.address;
 
 public class Address {
     private final String street;
