@@ -1,4 +1,4 @@
-package br.com.fiap.FarmaNear_Register.infra.product;
+package br.com.fiap.FarmaNear_Register.infra.repository.product;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.util.Objects;
 @Entity(name = "product")
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductEntity {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class ProductEntity {
         Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
         Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
         if (thisEffectiveClass != oEffectiveClass) return false;
-        ProductEntity that = (ProductEntity) o;
+        Product that = (Product) o;
         return id != null && Objects.equals(id, that.id);
     }
 

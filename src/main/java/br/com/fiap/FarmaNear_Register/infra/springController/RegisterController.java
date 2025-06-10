@@ -1,6 +1,7 @@
-package br.com.fiap.FarmaNear_Register.application;
+package br.com.fiap.FarmaNear_Register.infra.springController;
 
-import br.com.fiap.FarmaNear_Register.application.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.infra.gateway.DrugstoreJpaRepository;
+import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/register")
 public class RegisterController {
 
-    private final DrugstoreService drugstoreService;
+    private final DrugstoreJpaRepository drugstoreService;
 
-    public RegisterController(DrugstoreService drugstoreService) {
+    public RegisterController(DrugstoreJpaRepository drugstoreService) {
         this.drugstoreService = drugstoreService;
     }
 

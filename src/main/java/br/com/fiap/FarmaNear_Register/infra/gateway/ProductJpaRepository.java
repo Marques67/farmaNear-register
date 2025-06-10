@@ -1,9 +1,9 @@
-package br.com.fiap.FarmaNear_Register.application.product;
+package br.com.fiap.FarmaNear_Register.infra.gateway;
 
-import br.com.fiap.FarmaNear_Register.application.dto.ProductDto;
-import br.com.fiap.FarmaNear_Register.domain.product.Product;
-import br.com.fiap.FarmaNear_Register.infra.product.ProductEntity;
-import br.com.fiap.FarmaNear_Register.infra.product.ProductRepository;
+import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.entities.product.ProductEntity;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.Product;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProductService {
+public class ProductJpaRepository {
 
     private final ProductRepository repository;
 
-    public ProductService(ProductRepository repository) {
+    public ProductJpaRepository(ProductRepository repository) {
         this.repository = repository;
     }
 
@@ -34,10 +34,10 @@ public class ProductService {
     @Transactional
     public ProductDto saveProduct(ProductDto productDto) {
 
-        Product product = new Product(productDto.name(), productDto.brand(), productDto.quantity(),
+        ProductEntity product = new ProductEntity(productDto.name(), productDto.brand(), productDto.quantity(),
                 productDto.dosage(), productDto.type(), productDto.expirationDate());
 
-        ProductEntity productEntity = repository.save(product.saveProduct());
+        Product productEntity = repository.save(product.saveProduct());
 
         return new ProductDto(productEntity.getId(), productEntity.getName(), productEntity.getBrand(),
                 productEntity.getQuantity(), productEntity.getDosage(), productEntity.getType(), productEntity.getExpirationDate());

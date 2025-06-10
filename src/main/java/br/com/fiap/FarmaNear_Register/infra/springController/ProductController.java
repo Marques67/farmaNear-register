@@ -1,6 +1,7 @@
-package br.com.fiap.FarmaNear_Register.application.product;
+package br.com.fiap.FarmaNear_Register.infra.springController;
 
-import br.com.fiap.FarmaNear_Register.application.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.infra.gateway.ProductJpaRepository;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,9 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
-    private final ProductService service;
+    private final ProductJpaRepository service;
 
-    public ProductController(ProductService service) {
+    public ProductController(ProductJpaRepository service) {
         this.service = service;
     }
 
