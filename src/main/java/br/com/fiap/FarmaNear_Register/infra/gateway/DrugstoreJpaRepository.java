@@ -1,15 +1,15 @@
-package br.com.fiap.FarmaNear_Register.application;
+package br.com.fiap.FarmaNear_Register.infra.gateway;
 
-import br.com.fiap.FarmaNear_Register.application.dto.DrugstoreDto;
-import br.com.fiap.FarmaNear_Register.infra.drugstore.DrugstoreRepository;
+import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DrugstoreService {
+public class DrugstoreJpaRepository {
 
     private final DrugstoreRepository drugstoreRepository;
 
-    public DrugstoreService(DrugstoreRepository drugstoreRepository) {
+    public DrugstoreJpaRepository(DrugstoreRepository drugstoreRepository) {
         this.drugstoreRepository = drugstoreRepository;
     }
 
