@@ -1,9 +1,13 @@
+version: '3.8'
+
 services:
-  drugstore-db:
-    image: postgres
+  farmNear:
+    image: mongo:latest
+    container_name: farmNear
     ports:
-      - 5433:5432
-    environment:
-      - POSTGRES_DB=drugstore-db
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=123456
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

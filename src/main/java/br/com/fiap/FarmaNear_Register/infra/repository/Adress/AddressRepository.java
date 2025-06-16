@@ -1,6 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.repository.Adress;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface AddressRepository extends JpaRepository<Address, Long> {
+public interface AddressRepository extends MongoRepository<Address, Long> {
 }

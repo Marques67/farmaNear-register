@@ -1,14 +1,18 @@
 package br.com.fiap.FarmaNear_Register.infra.repository.product;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-@Entity(name = "product")
+@Document("product")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {

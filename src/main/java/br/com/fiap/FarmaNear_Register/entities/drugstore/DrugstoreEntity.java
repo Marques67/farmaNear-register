@@ -1,7 +1,9 @@
 package br.com.fiap.FarmaNear_Register.entities.drugstore;
 
 import br.com.fiap.FarmaNear_Register.entities.address.AddressEntity;
-import lombok.Getter;
+import br.com.fiap.FarmaNear_Register.entities.product.ProductEntity;
+
+import java.util.Set;
 
 public class DrugstoreEntity {
     private final Integer cnpj;
@@ -9,13 +11,15 @@ public class DrugstoreEntity {
     private final String email;
     private final String phone;
     private final AddressEntity address;
+    private final Set<ProductEntity> products;
 
-    public DrugstoreEntity(Integer cnpj, String name, String email, String phone, AddressEntity address) {
+    public DrugstoreEntity(Integer cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
+        this.products = products;
     }
 
     public Integer getCnpj() {
@@ -36,5 +40,9 @@ public class DrugstoreEntity {
 
     public AddressEntity getAddress() {
         return address;
+    }
+
+    public Set<ProductEntity> getProducts() {
+        return products;
     }
 }

@@ -1,11 +1,11 @@
 package br.com.fiap.FarmaNear_Register.infra.repository.Adress;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity(name = "address")
+@Document("address")
 public class Address {
 
     @Id
@@ -18,7 +18,6 @@ public class Address {
     private String city;
     private String state;
     private String zipCode;
-
 
     public Address(Long id, String street, String number, String complement, String city, String state, String zipCode) {
         this.id = id;
