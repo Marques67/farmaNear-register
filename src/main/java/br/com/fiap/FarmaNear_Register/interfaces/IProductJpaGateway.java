@@ -8,5 +8,5 @@ public interface IProductJpaGateway {
 
     ProductDto saveProduct(ProductDto productDto);
 
-    List<ProductDto> saveProduct(List<ProductDto> productDto);
+    List<ProductDto> saveProducts(List<ProductDto> productDto);
 }

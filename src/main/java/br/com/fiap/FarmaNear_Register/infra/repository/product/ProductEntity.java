@@ -29,6 +29,19 @@ public class ProductEntity {
     @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
+    @Column(name = "drugstore_id")
+    private Long drugstoreId;
+
+    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, Long drugstoreId) {
+        this.name = name;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.dosage = dosage;
+        this.type = type;
+        this.expirationDate = expirationDate;
+        this.drugstoreId = drugstoreId;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
@@ -49,55 +62,31 @@ public class ProductEntity {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String getDosage() {
         return dosage;
     }
 
-    public void setDosage(String dosage) {
-        this.dosage = dosage;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
-        this.expirationDate = expirationDate;
+    public Long getDrugstoreId() {
+        return drugstoreId;
     }
 }

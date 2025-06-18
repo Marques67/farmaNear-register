@@ -21,7 +21,7 @@ public class ProductJpaRepository implements IProductJpaGateway {
     }
 
     @Transactional
-    public List<ProductDto> saveProduct(List<ProductDto> productList) {
+    public List<ProductDto> saveProducts(List<ProductDto> productList) {
         List<ProductDto> productsDtoSaved = new ArrayList<>();
 
         productList.forEach(productDto -> {
@@ -36,12 +36,13 @@ public class ProductJpaRepository implements IProductJpaGateway {
     public ProductDto saveProduct(ProductDto productDto) {
 
         Product product = new Product(productDto.name(), productDto.brand(), productDto.quantity(),
-                productDto.dosage(), productDto.type(), productDto.expirationDate());
+                productDto.dosage(), productDto.type(), productDto.expirationDate(), productDto.drugstoreId());
 
         ProductEntity productEntity = repository.save(product.saveProduct());
 
         return new ProductDto(productEntity.getId(), productEntity.getName(), productEntity.getBrand(),
-                productEntity.getQuantity(), productEntity.getDosage(), productEntity.getType(), productEntity.getExpirationDate());
+                productEntity.getQuantity(), productEntity.getDosage(), productEntity.getType(), productEntity.getExpirationDate(),
+                productEntity.getDrugstoreId());
 
     }
 }

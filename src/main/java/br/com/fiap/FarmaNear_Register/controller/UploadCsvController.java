@@ -1,7 +1,11 @@
 package br.com.fiap.FarmaNear_Register.controller;
 
+import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.usecases.UploadCsvUseCase;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 public class UploadCsvController {
 
@@ -11,7 +15,7 @@ public class UploadCsvController {
         this.uploadCsvUseCase = uploadCsvUseCase;
     }
 
-    public MultipartFile UploadCsv(MultipartFile file) {
-        return this.uploadCsvUseCase.UploadCsv(file);
+    public List<ProductDto> uploadCsv(MultipartFile file) throws IOException {
+        return this.uploadCsvUseCase.uploadCsv(file);
     }
 }

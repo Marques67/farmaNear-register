@@ -19,9 +19,8 @@ public class RegisterController {
     }
 
     @PostMapping("/drugstore")
-    public ResponseEntity<?> createDrugstore(@RequestBody DrugstoreDto drugstoreDto) {
+    public ResponseEntity<DrugstoreDto> createDrugstore(@RequestBody DrugstoreDto drugstoreDto) {
         drugstoreService.createDrugstore(drugstoreDto);
-
         return ResponseEntity.ok("DrugstoreEntity registered successfully");
     }
 }
