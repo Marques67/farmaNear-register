@@ -1,6 +1,6 @@
 package br.com.fiap.FarmaNear_Register.entities.address;
 
-public class AddressEntity {
+public class Address {
     private final String street;
     private final String number;
     private final String complement;
@@ -8,7 +8,7 @@ public class AddressEntity {
     private final String state;
     private final String zipCode;
 
-    public AddressEntity(String street, String number, String complement, String city, String state, String zipCode) {
+    public Address(String street, String number, String complement, String city, String state, String zipCode) {
         this.street = street;
         this.number = number;
         this.complement = complement;

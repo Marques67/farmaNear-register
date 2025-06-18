@@ -1,9 +1,7 @@
 package br.com.fiap.FarmaNear_Register.infra.repository.drugstore;
 
-import br.com.fiap.FarmaNear_Register.infra.repository.Adress.Address;
-import br.com.fiap.FarmaNear_Register.infra.repository.product.Product;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import br.com.fiap.FarmaNear_Register.infra.repository.Adress.AddressEntity;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +10,7 @@ import java.util.Set;
 
 @Document("drugstore")
 @Getter
-public class Drugstore {
+public class DrugstoreEntity {
 
     @Id
     private Long id;
@@ -20,13 +18,13 @@ public class Drugstore {
     private String name;
     private String email;
     private String phone;
-    private Address address;
-    private Set<Product> products;
+    private AddressEntity address;
+    private Set<ProductEntity> products;
 
-    public Drugstore() {
+    public DrugstoreEntity() {
     }
 
-    public Drugstore(Long id, Integer cnpj, String name, String email, String phone, Address address, Set<Product> products) {
+    public DrugstoreEntity(Long id, Integer cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.id = id;
         this.cnpj = cnpj;
         this.name = name;

@@ -1,11 +1,11 @@
 package br.com.fiap.FarmaNear_Register.entities.product;
 
-import br.com.fiap.FarmaNear_Register.infra.repository.product.Product;
-import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductBuilder;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntityBuilder;
 
 import java.time.LocalDate;
 
-public class ProductEntity implements ProductEntityInterface {
+public class Product implements ProductEntityInterface {
 
     private Long id;
     private String name;
@@ -15,7 +15,7 @@ public class ProductEntity implements ProductEntityInterface {
     private String type;
     private LocalDate expirationDate;
 
-    public ProductEntity(Long id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate) {
+    public Product(Long id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -25,7 +25,7 @@ public class ProductEntity implements ProductEntityInterface {
         this.expirationDate = expirationDate;
     }
 
-    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate) {
+    public Product(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -63,8 +63,8 @@ public class ProductEntity implements ProductEntityInterface {
     }
 
     @Override
-    public Product saveProduct() {
-        return new ProductBuilder()
+    public ProductEntity saveProduct() {
+        return new ProductEntityBuilder()
                 .withId(id)
                 .withName(name)
                 .withBrand(brand)

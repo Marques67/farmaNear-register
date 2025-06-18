@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("address")
-public class Address {
+public class AddressEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +19,7 @@ public class Address {
     private String state;
     private String zipCode;
 
-    public Address(Long id, String street, String number, String complement, String city, String state, String zipCode) {
+    public AddressEntity(Long id, String street, String number, String complement, String city, String state, String zipCode) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -29,7 +29,7 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public Address() {
+    public AddressEntity() {
 
     }
 

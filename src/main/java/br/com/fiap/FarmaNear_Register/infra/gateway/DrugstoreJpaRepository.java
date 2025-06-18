@@ -2,10 +2,11 @@ package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreRepository;
+import br.com.fiap.FarmaNear_Register.interfaces.IDrugstoreJpaGateway;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DrugstoreJpaRepository {
+public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
 
     private final DrugstoreRepository drugstoreRepository;
 

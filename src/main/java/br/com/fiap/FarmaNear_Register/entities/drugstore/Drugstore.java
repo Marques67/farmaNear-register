@@ -1,19 +1,19 @@
 package br.com.fiap.FarmaNear_Register.entities.drugstore;
 
-import br.com.fiap.FarmaNear_Register.entities.address.AddressEntity;
-import br.com.fiap.FarmaNear_Register.entities.product.ProductEntity;
+import br.com.fiap.FarmaNear_Register.entities.address.Address;
+import br.com.fiap.FarmaNear_Register.entities.product.Product;
 
 import java.util.Set;
 
-public class DrugstoreEntity {
+public class Drugstore {
     private final Integer cnpj;
     private final String name;
     private final String email;
     private final String phone;
-    private final AddressEntity address;
-    private final Set<ProductEntity> products;
+    private final Address address;
+    private final Set<Product> products;
 
-    public DrugstoreEntity(Integer cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
+    public Drugstore(Integer cnpj, String name, String email, String phone, Address address, Set<Product> products) {
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
@@ -38,11 +38,11 @@ public class DrugstoreEntity {
         return phone;
     }
 
-    public AddressEntity getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public Set<ProductEntity> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 }

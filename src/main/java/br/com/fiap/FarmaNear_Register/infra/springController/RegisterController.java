@@ -22,6 +22,6 @@ public class RegisterController {
     public ResponseEntity<?> createDrugstore(@RequestBody DrugstoreDto drugstoreDto) {
         drugstoreService.createDrugstore(drugstoreDto);
 
-        return ResponseEntity.ok("Drugstore registered successfully");
+        return ResponseEntity.ok("DrugstoreEntity registered successfully");
     }
 }
