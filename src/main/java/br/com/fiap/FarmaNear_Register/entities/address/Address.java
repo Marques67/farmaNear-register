@@ -40,4 +40,5 @@ public class Address {
     public String getZipCode() {
         return zipCode;
     }
+
 }

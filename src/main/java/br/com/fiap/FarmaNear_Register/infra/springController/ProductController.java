@@ -1,5 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
+import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.infra.gateway.ProductJpaRepository;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -15,10 +16,12 @@ import java.util.List;
 @RequestMapping("/product")
 public class ProductController {
 
+    private final UploadCsvController uploadCsvController;
     private final ProductJpaRepository service;
 
-    public ProductController(ProductJpaRepository service) {
+    public ProductController(ProductJpaRepository service, UploadCsvController uploadCsvController) {
         this.service = service;
+        this.uploadCsvController = uploadCsvController;
     }
 
     @PostMapping(value = "/upload-csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -33,6 +36,8 @@ public class ProductController {
                 .build()
                 .parse();
 
+
+        uploadCsvController.UploadCsv(file);
         return this.service.saveProduct(productList);
     }
 
