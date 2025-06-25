@@ -2,6 +2,7 @@ package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.address.Address;
 import br.com.fiap.FarmaNear_Register.entities.drugstore.Drugstore;
@@ -20,13 +21,13 @@ public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
         this.repository = repository;
     }
 
-    public DrugstoreDto createDrugstore(DrugstoreDto drugstoreDto) {
-        AddressDto addressDto = drugstoreDto.address();
+    public DrugstoreDto createDrugstore(InsertDrugstoreDto insertDrugstoreDto) {
+        AddressDto addressDto = insertDrugstoreDto.address();
         Address address = new Address(addressDto.street(), addressDto.number(), addressDto.complement(),
                 addressDto.city(), addressDto.state(), addressDto.zipCode());
 
-        Drugstore drugstore = new Drugstore(drugstoreDto.cnpj(), drugstoreDto.name(), drugstoreDto.email(),
-                drugstoreDto.phone(), address);
+        Drugstore drugstore = new Drugstore(insertDrugstoreDto.cnpj(), insertDrugstoreDto.name(), insertDrugstoreDto.email(),
+                insertDrugstoreDto.phone(), address);
 
         DrugstoreEntity drugstoreEntity = repository.save(drugstore.createDrugstore());
 

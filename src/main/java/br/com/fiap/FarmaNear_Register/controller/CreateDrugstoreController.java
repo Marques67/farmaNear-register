@@ -1,7 +1,7 @@
 package br.com.fiap.FarmaNear_Register.controller;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
-import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.usecases.CreateDrugstoreUseCase;
 
 public class CreateDrugstoreController {
@@ -12,7 +12,7 @@ public class CreateDrugstoreController {
         this.createDrugstoreUseCase = createDrugstoreUseCase;
     }
 
-    public DrugstoreDto createDrugstore(DrugstoreDto drugstoreDto) {
-        return this.createDrugstoreUseCase.createDrugstore(drugstoreDto);
+    public DrugstoreDto createDrugstore(InsertDrugstoreDto insertDrugstoreDto) {
+        return this.createDrugstoreUseCase.createDrugstore(insertDrugstoreDto);
     }
 }

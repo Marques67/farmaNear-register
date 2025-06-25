@@ -32,6 +32,17 @@ public class ProductEntity {
     @Column(name = "drugstore_id")
     private Long drugstoreId;
 
+    public ProductEntity(Long id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, Long drugstoreId) {
+        this.id = id;
+        this.name = name;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.dosage = dosage;
+        this.type = type;
+        this.expirationDate = expirationDate;
+        this.drugstoreId = drugstoreId;
+    }
+
     public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, Long drugstoreId) {
         this.name = name;
         this.brand = brand;

@@ -1,6 +1,7 @@
 package br.com.fiap.FarmaNear_Register.usecases;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.interfaces.IDrugstoreJpaGateway;
 
 public class CreateDrugstoreUseCase {
@@ -11,7 +12,7 @@ public class CreateDrugstoreUseCase {
         this.drugstoreJpaGateway = drugstoreJpaGateway;
     }
 
-    public DrugstoreDto createDrugstore(DrugstoreDto drugstoreDto) {
-        return drugstoreJpaGateway.createDrugstore(drugstoreDto);
+    public DrugstoreDto createDrugstore(InsertDrugstoreDto insertDrugstoreDto) {
+        return drugstoreJpaGateway.createDrugstore(insertDrugstoreDto);
     }
 }

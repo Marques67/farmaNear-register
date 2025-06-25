@@ -16,7 +16,7 @@ public class DrugstoreEntity {
 
     @Id
     private Long id;
-    private Integer cnpj;
+    private Long cnpj;
     private String name;
     private String email;
     private String phone;
@@ -26,7 +26,8 @@ public class DrugstoreEntity {
     public DrugstoreEntity() {
     }
 
-    public DrugstoreEntity(Integer cnpj, String name, String email, String phone, AddressEntity address) {
+    public DrugstoreEntity(Long id, Long cnpj, String name, String email, String phone, AddressEntity address) {
+        this.id = id;
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
@@ -34,7 +35,15 @@ public class DrugstoreEntity {
         this.address = address;
     }
 
-    public DrugstoreEntity(Long id, Integer cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
+    public DrugstoreEntity(Long cnpj, String name, String email, String phone, AddressEntity address) {
+        this.cnpj = cnpj;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+    }
+
+    public DrugstoreEntity(Long id, Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.id = id;
         this.cnpj = cnpj;
         this.name = name;
@@ -48,7 +57,7 @@ public class DrugstoreEntity {
         return id;
     }
 
-    public Integer getCnpj() {
+    public Long getCnpj() {
         return cnpj;
     }
 
