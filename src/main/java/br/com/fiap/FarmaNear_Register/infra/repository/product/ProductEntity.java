@@ -18,8 +18,8 @@ import java.util.Objects;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private String id;
     private String name;
     private String brand;
     private Integer quantity;
@@ -30,9 +30,10 @@ public class ProductEntity {
     private LocalDate expirationDate;
 
     @Column(name = "drugstore_id")
-    private Long drugstoreId;
+    private String drugstoreId;
 
-    public ProductEntity(Long id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, Long drugstoreId) {
+    public ProductEntity(String id, String name, String brand, Integer quantity, String dosage, String type,
+                         LocalDate expirationDate, String drugstoreId) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -43,7 +44,7 @@ public class ProductEntity {
         this.drugstoreId = drugstoreId;
     }
 
-    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, Long drugstoreId) {
+    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, String drugstoreId) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -69,7 +70,7 @@ public class ProductEntity {
         return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -97,7 +98,7 @@ public class ProductEntity {
         return expirationDate;
     }
 
-    public Long getDrugstoreId() {
+    public String getDrugstoreId() {
         return drugstoreId;
     }
 }

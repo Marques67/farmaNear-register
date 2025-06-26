@@ -16,6 +16,8 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.mockito.Mockito.any;
+
 public class UploadCsvUseCaseTest {
 
     @Mock
@@ -43,13 +45,13 @@ public class UploadCsvUseCaseTest {
                 csvContent.getBytes(StandardCharsets.UTF_8)
         );
 
-        ProductDto product1 = new ProductDto(1L, "Dorflex", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.of(2025, 12, 31), 1L);
-        ProductDto product2 = new ProductDto(2L, "Paracetamol", "Medley", 10,
-                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15), 1L);
+        ProductDto product1 = new ProductDto("111", "Dorflex", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.of(2025, 12, 31), "1");
+        ProductDto product2 = new ProductDto("222", "Paracetamol", "Medley", 10,
+                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15), "1");
         List<ProductDto> expectedProducts = List.of(product1, product2);
 
-        Mockito.doNothing().when(productJpaGateway).saveProducts(List.of());
+        Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(List.of());
 
         List<ProductDto> result = uploadCsvUseCase.uploadCsv(file);
 

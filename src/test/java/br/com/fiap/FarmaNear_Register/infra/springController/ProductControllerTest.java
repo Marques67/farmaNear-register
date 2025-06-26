@@ -52,8 +52,8 @@ public class ProductControllerTest {
 
     @Test
     public void saveProduct() throws Exception {
-        ProductDto productDto = new ProductDto(1L, "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 1L);
+        ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
 
         when(insertNewProductController.insertNewProduct(productDto)).thenReturn(productDto);
 

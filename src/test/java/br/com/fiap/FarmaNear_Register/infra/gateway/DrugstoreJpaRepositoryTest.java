@@ -7,29 +7,25 @@ import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class DrugstoreJpaRepositoryTest {
 
+    @InjectMocks
     private DrugstoreJpaRepository drugstoreJpaRepository;
 
-    @Autowired
+    @Mock
     private DrugstoreRepository drugstoreRepository;
 
     @BeforeEach
     void setUp() {
-        drugstoreJpaRepository = new DrugstoreJpaRepository(drugstoreRepository);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
@@ -37,7 +33,7 @@ public class DrugstoreJpaRepositoryTest {
         AddressEntity addressEntity = new AddressEntity("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
                 "Rio de Janeiro", "24440874");
 
-        DrugstoreEntity drugstoreEntity = new DrugstoreEntity(1L, 70105796000122L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreEntity drugstoreEntity = new DrugstoreEntity("111", 70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressEntity);
 
         InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",

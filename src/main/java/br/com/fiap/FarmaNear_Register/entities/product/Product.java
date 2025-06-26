@@ -6,27 +6,18 @@ import java.time.LocalDate;
 
 public class Product implements ProductEntityInterface {
 
-    private Long id;
+    private String id;
     private String name;
     private String brand;
     private Integer quantity;
     private String dosage;
     private String type;
     private LocalDate expirationDate;
-    private Long drugstoreId;
+    private String drugstoreId;
 
-    public Product(Long id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate) {
+    public Product(String id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
+                   String drugstoreId) {
         this.id = id;
-        this.name = name;
-        this.brand = brand;
-        this.quantity = quantity;
-        this.dosage = dosage;
-        this.type = type;
-        this.expirationDate = expirationDate;
-    }
-
-    public Product(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                   Long drugstoreId) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -36,7 +27,18 @@ public class Product implements ProductEntityInterface {
         this.drugstoreId = drugstoreId;
     }
 
-    public Long getId() {
+    public Product(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
+                   String drugstoreId) {
+        this.name = name;
+        this.brand = brand;
+        this.quantity = quantity;
+        this.dosage = dosage;
+        this.type = type;
+        this.expirationDate = expirationDate;
+        this.drugstoreId = drugstoreId;
+    }
+
+    public String getId() {
         return id;
     }
 

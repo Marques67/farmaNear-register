@@ -20,7 +20,6 @@ public class ProductJpaRepository implements IProductJpaGateway {
         this.repository = repository;
     }
 
-    @Transactional
     public List<ProductDto> saveProducts(List<ProductDto> productList) {
         List<ProductDto> productsDtoSaved = new ArrayList<>();
 
@@ -32,7 +31,6 @@ public class ProductJpaRepository implements IProductJpaGateway {
         return productsDtoSaved;
     }
 
-    @Transactional
     public ProductDto saveProduct(ProductDto productDto) {
 
         Product product = new Product(productDto.name(), productDto.brand(), productDto.quantity(),

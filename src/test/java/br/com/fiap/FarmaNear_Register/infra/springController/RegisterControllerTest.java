@@ -48,7 +48,7 @@ public class RegisterControllerTest {
         InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655");
 
-        DrugstoreDto drugstoreDto = new DrugstoreDto(1L, 70105796000122L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreDto drugstoreDto = new DrugstoreDto("111", 70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655");
 
         when(drugstoreJpaRepository.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);

@@ -2,6 +2,8 @@ package br.com.fiap.FarmaNear_Register.infra.repository.drugstore;
 
 import br.com.fiap.FarmaNear_Register.infra.repository.address.AddressEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -15,7 +17,7 @@ import java.util.Set;
 public class DrugstoreEntity {
 
     @Id
-    private Long id;
+    private String id;
     private Long cnpj;
     private String name;
     private String email;
@@ -26,7 +28,7 @@ public class DrugstoreEntity {
     public DrugstoreEntity() {
     }
 
-    public DrugstoreEntity(Long id, Long cnpj, String name, String email, String phone, AddressEntity address) {
+    public DrugstoreEntity(String id, Long cnpj, String name, String email, String phone, AddressEntity address) {
         this.id = id;
         this.cnpj = cnpj;
         this.name = name;
@@ -43,7 +45,7 @@ public class DrugstoreEntity {
         this.address = address;
     }
 
-    public DrugstoreEntity(Long id, Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
+    public DrugstoreEntity(String id, Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.id = id;
         this.cnpj = cnpj;
         this.name = name;
@@ -53,7 +55,7 @@ public class DrugstoreEntity {
         this.products = products;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

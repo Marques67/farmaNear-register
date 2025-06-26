@@ -1,16 +1,15 @@
 package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.entities.product.Product;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,30 +17,31 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@ExtendWith(SpringExtension.class)
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class ProductJpaRepositoryTest {
 
+    @InjectMocks
     private ProductJpaRepository productJpaRepository;
 
-    @Autowired
+    @Mock
     private ProductRepository productRepository;
 
     @BeforeEach
     void setUp() {
-        productJpaRepository = new ProductJpaRepository(productRepository);
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     void shouldSaveNewProductWithSuccess() {
-        ProductEntity productEntity = new ProductEntity(1L, "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 1L);
+        ProductEntity productEntity = new ProductEntity("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
 
-        ProductDto productDto = new ProductDto(1L, "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 1L);
+        Product product = new Product("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
 
-        Mockito.when(productRepository.save(productEntity)).thenReturn(productEntity);
+        ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
+
+        Mockito.when(productRepository.save(product.saveProduct())).thenReturn(productEntity);
 
         ProductDto result = productJpaRepository.saveProduct(productDto);
 
@@ -57,11 +57,11 @@ public class ProductJpaRepositoryTest {
 
     @Test
     void shouldSaveAListOfProductsWithSuccess() {
-        ProductEntity productEntity = new ProductEntity(1L, "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 1L);
+        ProductEntity productEntity = new ProductEntity("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
 
-        ProductDto productDto = new ProductDto(1L, "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 1L);
+        ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
+                "10mg", "Comprimido", LocalDate.now(), "1L");
 
         Mockito.when(productRepository.save(productEntity)).thenReturn(productEntity);
 
