@@ -23,7 +23,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/upload-csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public List<ProductDto> uploadCsv(@RequestPart("file") MultipartFile file) throws Exception {
+    public List<ProductDto> uploadCsv(@RequestParam("file") MultipartFile file) throws Exception {
         return uploadCsvController.uploadCsv(file);
     }
 

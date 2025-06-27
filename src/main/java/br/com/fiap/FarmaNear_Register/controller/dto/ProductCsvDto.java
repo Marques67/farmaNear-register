@@ -8,25 +8,25 @@ import java.time.LocalDate;
 
 public class ProductCsvDto {
 
-    @CsvBindByName
+    @CsvBindByName(column = "name")
     private String name;
 
-    @CsvBindByName
+    @CsvBindByName(column = "brand")
     private String brand;
 
-    @CsvBindByName
+    @CsvBindByName(column = "quantity")
     private Integer quantity;
 
-    @CsvBindByName
+    @CsvBindByName(column = "dosage")
     private String dosage;
 
-    @CsvBindByName
+    @CsvBindByName(column = "type")
     private String type;
 
     @CsvCustomBindByName(converter = LocalDateConverterUtil.class)
     private LocalDate expirationDate;
 
-    @CsvBindByName
+    @CsvBindByName(column = "drugstoreId")
     private String drugstoreId;
 
     public ProductCsvDto() {}
