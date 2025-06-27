@@ -2,18 +2,12 @@ package br.com.fiap.FarmaNear_Register.infra.repository.drugstore;
 
 import br.com.fiap.FarmaNear_Register.infra.repository.address.AddressEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
 
 @Document("drugstore")
-@NoArgsConstructor
-@AllArgsConstructor
 public class DrugstoreEntity {
 
     @Id
