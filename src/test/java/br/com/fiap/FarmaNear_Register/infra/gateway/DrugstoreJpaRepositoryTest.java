@@ -1,10 +1,12 @@
 package br.com.fiap.FarmaNear_Register.infra.gateway;
 
+import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.infra.repository.address.AddressEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreRepository;
+import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -36,10 +38,13 @@ public class DrugstoreJpaRepositoryTest {
         DrugstoreEntity drugstoreEntity = new DrugstoreEntity("111", 70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressEntity);
 
-        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
-                "21 99988776655");
+        AddressDto addressDto = new AddressDto("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
+                "Rio de Janeiro", "24440874");
 
-        Mockito.when(drugstoreRepository.save(drugstoreEntity)).thenReturn(drugstoreEntity);
+        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
+                "21 99988776655", addressDto);
+
+        Mockito.when(drugstoreRepository.save(Mockito.any(DrugstoreEntity.class))).thenReturn(drugstoreEntity);
 
         DrugstoreDto result = drugstoreJpaRepository.createDrugstore(insertDrugstoreDto);
 

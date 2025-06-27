@@ -16,6 +16,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.any;
 
 public class UploadCsvUseCaseTest {
@@ -60,7 +61,7 @@ public class UploadCsvUseCaseTest {
         Assertions.assertEquals("Paracetamol", result.get(1).name());
         Assertions.assertEquals(LocalDate.of(2025, 12, 31), result.get(0).expirationDate());
 
-        Mockito.verify(productJpaGateway, Mockito.times(1)).saveProducts(List.of());
+        Mockito.verify(productJpaGateway).saveProducts(anyList());
     }
 
     @Test

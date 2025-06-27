@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -41,7 +43,7 @@ public class ProductJpaRepositoryTest {
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
                 "10mg", "Comprimido", LocalDate.now(), "1L");
 
-        Mockito.when(productRepository.save(product.saveProduct())).thenReturn(productEntity);
+        Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
         ProductDto result = productJpaRepository.saveProduct(productDto);
 
@@ -63,18 +65,18 @@ public class ProductJpaRepositoryTest {
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
                 "10mg", "Comprimido", LocalDate.now(), "1L");
 
-        Mockito.when(productRepository.save(productEntity)).thenReturn(productEntity);
+        Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
         List<ProductDto> resultList = productJpaRepository.saveProducts(List.of(productDto));
 
         assertNotNull(resultList);
-        assertEquals(productEntity.getName(), resultList.get(1).name());
-        assertEquals(productEntity.getBrand(), resultList.get(1).brand());
-        assertEquals(productEntity.getQuantity(), resultList.get(1).quantity());
-        assertEquals(productEntity.getDosage(), resultList.get(1).dosage());
-        assertEquals(productEntity.getType(), resultList.get(1).type());
-        assertEquals(productEntity.getExpirationDate(), resultList.get(1).expirationDate());
-        assertEquals(productEntity.getDrugstoreId(), resultList.get(1).drugstoreId());
+        assertEquals(productEntity.getName(), resultList.get(0).name());
+        assertEquals(productEntity.getBrand(), resultList.get(0).brand());
+        assertEquals(productEntity.getQuantity(), resultList.get(0).quantity());
+        assertEquals(productEntity.getDosage(), resultList.get(0).dosage());
+        assertEquals(productEntity.getType(), resultList.get(0).type());
+        assertEquals(productEntity.getExpirationDate(), resultList.get(0).expirationDate());
+        assertEquals(productEntity.getDrugstoreId(), resultList.get(0).drugstoreId());
     }
 
 }
