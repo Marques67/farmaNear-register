@@ -14,7 +14,6 @@ import java.util.Objects;
 
 @Document("product")
 @NoArgsConstructor
-@AllArgsConstructor
 public class ProductEntity {
 
     @Id

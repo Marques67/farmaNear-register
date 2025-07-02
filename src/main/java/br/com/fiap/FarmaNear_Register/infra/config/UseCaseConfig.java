@@ -3,6 +3,7 @@ package br.com.fiap.FarmaNear_Register.infra.config;
 import br.com.fiap.FarmaNear_Register.interfaces.IDrugstoreJpaGateway;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
 import br.com.fiap.FarmaNear_Register.usecases.CreateDrugstoreUseCase;
+import br.com.fiap.FarmaNear_Register.usecases.GetDrugstoreByProductsUseCase;
 import br.com.fiap.FarmaNear_Register.usecases.InsertNewProductUseCase;
 import br.com.fiap.FarmaNear_Register.usecases.UploadCsvUseCase;
 import org.springframework.context.annotation.Bean;
@@ -24,5 +25,10 @@ public class UseCaseConfig {
     @Bean
     CreateDrugstoreUseCase createDrugstoreUseCase(IDrugstoreJpaGateway drugstoreJpaGateway) {
         return new CreateDrugstoreUseCase(drugstoreJpaGateway);
+    }
+
+    @Bean
+    GetDrugstoreByProductsUseCase getProductsUseCase(IProductJpaGateway productJpaGateway) {
+        return new GetDrugstoreByProductsUseCase(productJpaGateway);
     }
 }
