@@ -4,6 +4,7 @@ import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.product.Product;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductRepository;
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,13 +36,13 @@ public class ProductJpaRepositoryTest {
     @Test
     void shouldSaveNewProductWithSuccess() {
         ProductEntity productEntity = new ProductEntity("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
 
         Product product = new Product("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
@@ -54,16 +55,16 @@ public class ProductJpaRepositoryTest {
         assertEquals(productEntity.getDosage(), result.dosage());
         assertEquals(productEntity.getType(), result.type());
         assertEquals(productEntity.getExpirationDate(), result.expirationDate());
-        assertEquals(productEntity.getDrugstoreId(), result.drugstoreId());
+        assertEquals(productEntity.getDrugstoreId(), new ObjectId(result.drugstoreId()));
     }
 
     @Test
     void shouldSaveAListOfProductsWithSuccess() {
         ProductEntity productEntity = new ProductEntity("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
@@ -76,7 +77,7 @@ public class ProductJpaRepositoryTest {
         assertEquals(productEntity.getDosage(), resultList.get(0).dosage());
         assertEquals(productEntity.getType(), resultList.get(0).type());
         assertEquals(productEntity.getExpirationDate(), resultList.get(0).expirationDate());
-        assertEquals(productEntity.getDrugstoreId(), resultList.get(0).drugstoreId());
+        assertEquals(productEntity.getDrugstoreId(), new ObjectId(resultList.get(0).drugstoreId()));
     }
 
 }

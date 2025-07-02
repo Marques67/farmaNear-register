@@ -1,5 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
+import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
 import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
 import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
@@ -31,6 +32,9 @@ public class ProductControllerTest {
     @Mock
     private InsertNewProductController insertNewProductController;
 
+    @Mock
+    GetDrugstoreByProductController getProductController;
+
     private MockMvc mockMvc;
 
     private AutoCloseable mock;
@@ -38,7 +42,7 @@ public class ProductControllerTest {
     @BeforeEach
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        productController = new ProductController(uploadCsvController, insertNewProductController);
+        productController = new ProductController(uploadCsvController, insertNewProductController, getProductController);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(productController)

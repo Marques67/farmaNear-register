@@ -3,6 +3,7 @@ package br.com.fiap.FarmaNear_Register.infra.gateway;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.product.Product;
+import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductRepository;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
@@ -10,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,19 +48,17 @@ public class ProductJpaRepository implements IProductJpaGateway {
 
         return new ProductDto(productEntity.getId(), productEntity.getName(), productEntity.getBrand(),
                 productEntity.getQuantity(), productEntity.getDosage(), productEntity.getType(), productEntity.getExpirationDate(),
-                productEntity.getDrugstoreId());
+                String.valueOf(productEntity.getDrugstoreId()));
     }
 
-    public List<DrugstoreDto> getDrugstoreByProduct(String productName) {
-        LookupOperation lookupDrugstores = LookupOperation.newLookup()
-                .from("drugstore") // coleção de destino
-                .localField("drugstore_id") // campo em produtos
-                .foreignField("_id") // campo em lojas
-                .as("product_drugstore");
+    public List<DrugstoreEntity> getDrugstoreByProduct(String productName) {
+        Aggregation aggregation = Aggregation.newAggregation(
+                Aggregation.match(Criteria.where("name").is(productName)),
+                Aggregation.lookup("drugstore", "drugstore_id", "_id", "drugstore"),
+                Aggregation.unwind("drugstore"),
+                Aggregation.replaceRoot("drugstore"));
 
-        Aggregation aggregation = Aggregation.newAggregation(lookupDrugstores);
-
-        return mongoTemplate.aggregate(aggregation, "product", DrugstoreDto.class)
+        return mongoTemplate.aggregate(aggregation, "product", DrugstoreEntity.class)
                 .getMappedResults();
     }
 }

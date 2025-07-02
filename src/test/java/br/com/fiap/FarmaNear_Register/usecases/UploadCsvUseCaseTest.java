@@ -35,9 +35,9 @@ public class UploadCsvUseCaseTest {
     @Test
     void testUploadCsv_validFile_shouldParseAndSaveProducts() throws IOException {
         String csvContent = String.join("\n",
-                "name,brand,quantity,dosage,type,expirationDate,drugstoreId",
-                "Dorflex,Dorflex,10,10mg,Comprimido,2025-12-31,1",
-                "Paracetamol,Medley,10,750mg,Antitérmico,2026-01-15,1"
+                "name;brand;quantity;dosage;type;expirationDate;drugstoreId",
+                "Dorflex;Dorflex;10;10mg;Comprimido;2025-12-31;6865b4254de003cf9bc1aac2",
+                "Paracetamol;Medley;10;750mg;Antitérmico;2026-01-15;6865b4254de003cf9bc1aac2"
         );
         MockMultipartFile file = new MockMultipartFile(
                 "file",
@@ -47,9 +47,9 @@ public class UploadCsvUseCaseTest {
         );
 
         ProductDto product1 = new ProductDto("111", "Dorflex", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.of(2025, 12, 31), "1");
+                "10mg", "Comprimido", LocalDate.of(2025, 12, 31), "6865b4254de003cf9bc1aac2");
         ProductDto product2 = new ProductDto("222", "Paracetamol", "Medley", 10,
-                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15), "1");
+                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15), "6865b4254de003cf9bc1aac2");
         List<ProductDto> expectedProducts = List.of(product1, product2);
 
         Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(List.of());

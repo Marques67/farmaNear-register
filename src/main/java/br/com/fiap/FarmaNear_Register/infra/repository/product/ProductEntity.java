@@ -6,8 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -25,11 +27,10 @@ public class ProductEntity {
     private String dosage;
     private String type;
 
-    @Column(name = "expiration_date")
     private LocalDate expirationDate;
 
-    @Column(name = "drugstore_id")
-    private String drugstoreId;
+    @Field("drugstore_id")
+    private ObjectId drugstoreId;
 
     public ProductEntity(String id, String name, String brand, Integer quantity, String dosage, String type,
                          LocalDate expirationDate, String drugstoreId) {
@@ -40,7 +41,7 @@ public class ProductEntity {
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = drugstoreId;
+        this.drugstoreId = new ObjectId(drugstoreId);
     }
 
     public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, String drugstoreId) {
@@ -50,7 +51,7 @@ public class ProductEntity {
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = drugstoreId;
+        this.drugstoreId = new ObjectId(drugstoreId);
     }
 
     @Override
@@ -97,7 +98,7 @@ public class ProductEntity {
         return expirationDate;
     }
 
-    public String getDrugstoreId() {
+    public ObjectId getDrugstoreId() {
         return drugstoreId;
     }
 }
