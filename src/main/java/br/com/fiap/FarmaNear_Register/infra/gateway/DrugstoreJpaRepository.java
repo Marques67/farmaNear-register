@@ -2,6 +2,7 @@ package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.entities.address.Address;
 import br.com.fiap.FarmaNear_Register.entities.drugstore.Drugstore;
@@ -38,5 +39,7 @@ public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
                 drugstoreEntity.getEmail(), drugstoreEntity.getPhone(), drugstoreAddress);
     }
 
-
+    public GetDrugstoreDataDto getDrugstoreByCnpj(Long cnpj) {
+        return new GetDrugstoreDataDto(this.repository.findByCnpj(cnpj));
+    }
 }

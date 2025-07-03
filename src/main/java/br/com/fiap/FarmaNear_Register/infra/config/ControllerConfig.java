@@ -1,13 +1,7 @@
 package br.com.fiap.FarmaNear_Register.infra.config;
 
-import br.com.fiap.FarmaNear_Register.controller.CreateDrugstoreController;
-import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
-import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
-import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
-import br.com.fiap.FarmaNear_Register.usecases.CreateDrugstoreUseCase;
-import br.com.fiap.FarmaNear_Register.usecases.GetDrugstoreByProductsUseCase;
-import br.com.fiap.FarmaNear_Register.usecases.InsertNewProductUseCase;
-import br.com.fiap.FarmaNear_Register.usecases.UploadCsvUseCase;
+import br.com.fiap.FarmaNear_Register.controller.*;
+import br.com.fiap.FarmaNear_Register.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,5 +27,10 @@ public class ControllerConfig {
     @Bean
     GetDrugstoreByProductController getProductController(GetDrugstoreByProductsUseCase getProductsUseCase) {
         return new GetDrugstoreByProductController(getProductsUseCase);
+    }
+
+    @Bean
+    GetDrugstoreController getDrugstoreController(GetDrugstoreUseCase getDrugstoreUseCase) {
+        return new GetDrugstoreController(getDrugstoreUseCase);
     }
 }
