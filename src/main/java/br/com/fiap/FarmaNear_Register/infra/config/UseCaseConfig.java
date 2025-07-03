@@ -25,12 +25,17 @@ public class UseCaseConfig {
     }
 
     @Bean
-    GetDrugstoreByProductsUseCase getProductsUseCase(IProductJpaGateway productJpaGateway) {
+    GetDrugstoreByProductsUseCase getDrugstoreByProductController(IProductJpaGateway productJpaGateway) {
         return new GetDrugstoreByProductsUseCase(productJpaGateway);
     }
 
     @Bean
     GetDrugstoreUseCase getDrugstoreUseCase(IDrugstoreJpaGateway drugstoreJpaGateway) {
         return new GetDrugstoreUseCase(drugstoreJpaGateway);
+    }
+
+    @Bean
+    GetProductsUseCase getProductsUseCase(IProductJpaGateway productJpaGateway) {
+        return new GetProductsUseCase(productJpaGateway);
     }
 }

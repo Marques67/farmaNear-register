@@ -1,6 +1,7 @@
 package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.product.Product;
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
@@ -60,5 +61,11 @@ public class ProductJpaRepository implements IProductJpaGateway {
 
         return mongoTemplate.aggregate(aggregation, "product", DrugstoreEntity.class)
                 .getMappedResults();
+    }
+
+    public List<GetProductDataDto> getProducts(String productName) {
+        var productsEntities = repository.findAllByName(productName);
+
+        return productsEntities.stream().map(GetProductDataDto::new).toList();
     }
 }

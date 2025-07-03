@@ -1,6 +1,7 @@
 package br.com.fiap.FarmaNear_Register.interfaces;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.product.Product;
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
@@ -14,4 +15,6 @@ public interface IProductJpaGateway {
     List<ProductDto> saveProducts(List<ProductDto> productDto);
 
     List<DrugstoreEntity> getDrugstoreByProduct(String productName);
+
+    List<GetProductDataDto> getProducts(String name);
 }

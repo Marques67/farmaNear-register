@@ -1,9 +1,11 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
 import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
+import br.com.fiap.FarmaNear_Register.controller.GetProductsController;
 import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
 import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
 import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreByProductDto;
+import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,15 @@ public class ProductController {
 
     private final UploadCsvController uploadCsvController;
     private final InsertNewProductController insertNewProductController;
-    private final GetDrugstoreByProductController getProductController;
+    private final GetDrugstoreByProductController getDrugstoreByProductController;
+    private final GetProductsController getProductsController;
 
-    public ProductController(UploadCsvController uploadCsvController, InsertNewProductController insertNewProductController, GetDrugstoreByProductController getProductController) {
+    public ProductController(UploadCsvController uploadCsvController, InsertNewProductController insertNewProductController,
+                             GetDrugstoreByProductController getProductController, GetProductsController getProductsController) {
         this.uploadCsvController = uploadCsvController;
         this.insertNewProductController = insertNewProductController;
-        this.getProductController = getProductController;
+        this.getDrugstoreByProductController = getProductController;
+        this.getProductsController = getProductsController;
     }
 
     @PostMapping(value = "/upload-csv", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -39,6 +44,11 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<GetDrugstoreByProductDto> getDrugstoreByProduct(@RequestParam String productName) {
-     return ResponseEntity.ok(getProductController.getDrugstoreByProduct(productName));
+     return ResponseEntity.ok(getDrugstoreByProductController.getDrugstoreByProduct(productName));
+    }
+
+    @GetMapping("/getProducts")
+    public ResponseEntity<List<GetProductDataDto>> getProducts(@RequestBody String productName) {
+        return ResponseEntity.ok(getProductsController.getProducts(productName));
     }
 }

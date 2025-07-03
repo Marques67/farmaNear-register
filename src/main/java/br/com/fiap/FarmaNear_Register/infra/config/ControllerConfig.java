@@ -33,4 +33,9 @@ public class ControllerConfig {
     GetDrugstoreController getDrugstoreController(GetDrugstoreUseCase getDrugstoreUseCase) {
         return new GetDrugstoreController(getDrugstoreUseCase);
     }
+
+    @Bean
+    GetProductsController getProductsController(GetProductsUseCase getProductsUseCase) {
+        return new GetProductsController(getProductsUseCase);
+    }
 }
