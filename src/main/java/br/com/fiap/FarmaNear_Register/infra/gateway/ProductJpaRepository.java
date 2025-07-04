@@ -1,6 +1,5 @@
 package br.com.fiap.FarmaNear_Register.infra.gateway;
 
-import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.entities.product.Product;
@@ -8,10 +7,8 @@ import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductRepository;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
-import jakarta.transaction.Transactional;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 

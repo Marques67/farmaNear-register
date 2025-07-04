@@ -38,4 +38,9 @@ public class UseCaseConfig {
     GetProductsUseCase getProductsUseCase(IProductJpaGateway productJpaGateway) {
         return new GetProductsUseCase(productJpaGateway);
     }
+
+    @Bean
+    TokenUseCase tokenUseCase() {
+        return new TokenUseCase();
+    }
 }
