@@ -2,7 +2,6 @@ package br.com.fiap.FarmaNear_Register.infra.gateway;
 
 import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
-import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.entities.address.Address;
 import br.com.fiap.FarmaNear_Register.entities.drugstore.Drugstore;
@@ -11,6 +10,8 @@ import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreRepository;
 import br.com.fiap.FarmaNear_Register.interfaces.IDrugstoreJpaGateway;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
@@ -35,11 +36,11 @@ public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
         AddressDto drugstoreAddress = new AddressDto(addressEntity.getStreet(), addressEntity.getNumber(),
                 addressEntity.getComplement(), addressEntity.getCity(), addressEntity.getState(), addressEntity.getZipCode());
 
-        return new DrugstoreDto(drugstoreEntity.getId(), drugstoreEntity.getCnpj(), drugstoreEntity.getName(),
+        return new DrugstoreDto(drugstoreEntity.getCnpj(), drugstoreEntity.getName(),
                 drugstoreEntity.getEmail(), drugstoreEntity.getPhone(), drugstoreAddress);
     }
 
-    public GetDrugstoreDataDto getDrugstoreByCnpj(Long cnpj) {
-        return new GetDrugstoreDataDto(this.repository.findByCnpj(cnpj));
+    public Optional<DrugstoreEntity> getDrugstoreByCnpj(Long cnpj) {
+        return this.repository.findByCnpj(cnpj);
     }
 }

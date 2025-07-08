@@ -35,9 +35,9 @@ public class UploadCsvUseCaseTest {
     @Test
     void testUploadCsv_validFile_shouldParseAndSaveProducts() throws IOException {
         String csvContent = String.join("\n",
-                "name;brand;quantity;dosage;type;expirationDate;drugstoreId",
-                "Dorflex;Dorflex;10;10mg;Comprimido;2025-12-31;6865b4254de003cf9bc1aac2",
-                "Paracetamol;Medley;10;750mg;Antitérmico;2026-01-15;6865b4254de003cf9bc1aac2"
+                "name;brand;quantity;dosage;type;expirationDate;price",
+                "Dorflex;Dorflex;10;10mg;Comprimido;2025-12-31;3.86",
+                "Paracetamol;Medley;10;750mg;Antitérmico;2026-01-15;4.00"
         );
         MockMultipartFile file = new MockMultipartFile(
                 "file",
@@ -47,14 +47,16 @@ public class UploadCsvUseCaseTest {
         );
 
         ProductDto product1 = new ProductDto("111", "Dorflex", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.of(2025, 12, 31), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.of(2025, 12, 31),
+                686543L, 3.86);
         ProductDto product2 = new ProductDto("222", "Paracetamol", "Medley", 10,
-                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15), "6865b4254de003cf9bc1aac2");
+                "750mg", "Antitérmico", LocalDate.of(2026, 01, 15),
+                686543L, 4.00);
         List<ProductDto> expectedProducts = List.of(product1, product2);
 
         Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(List.of());
 
-        List<ProductDto> result = uploadCsvUseCase.uploadCsv(file);
+        List<ProductDto> result = uploadCsvUseCase.uploadCsv(file, 686543L);
 
         Assertions.assertEquals(2, result.size());
         Assertions.assertEquals("Dorflex", result.get(0).name());
@@ -74,7 +76,7 @@ public class UploadCsvUseCaseTest {
         );
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            uploadCsvUseCase.uploadCsv(file);
+            uploadCsvUseCase.uploadCsv(file, 686543L);
         });
 
         Assertions.assertEquals("Invalid file. Submit a CSV.", exception.getMessage());
@@ -91,7 +93,7 @@ public class UploadCsvUseCaseTest {
         );
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            uploadCsvUseCase.uploadCsv(file);
+            uploadCsvUseCase.uploadCsv(file, 686543L);
         });
 
         Assertions.assertEquals("Invalid file. Submit a CSV.", exception.getMessage());

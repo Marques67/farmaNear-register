@@ -2,7 +2,7 @@ package br.com.fiap.FarmaNear_Register.infra.repository.drugstore;
 
 import br.com.fiap.FarmaNear_Register.infra.repository.address.AddressEntity;
 import br.com.fiap.FarmaNear_Register.infra.repository.product.ProductEntity;
-import jakarta.persistence.Id;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Set;
@@ -11,7 +11,6 @@ import java.util.Set;
 public class DrugstoreEntity {
 
     @Id
-    private String id;
     private Long cnpj;
     private String name;
     private String email;
@@ -22,15 +21,6 @@ public class DrugstoreEntity {
     public DrugstoreEntity() {
     }
 
-    public DrugstoreEntity(String id, Long cnpj, String name, String email, String phone, AddressEntity address) {
-        this.id = id;
-        this.cnpj = cnpj;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
-    }
-
     public DrugstoreEntity(Long cnpj, String name, String email, String phone, AddressEntity address) {
         this.cnpj = cnpj;
         this.name = name;
@@ -39,18 +29,13 @@ public class DrugstoreEntity {
         this.address = address;
     }
 
-    public DrugstoreEntity(String id, Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
-        this.id = id;
+    public DrugstoreEntity(Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.products = products;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public Long getCnpj() {

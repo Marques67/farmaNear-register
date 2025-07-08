@@ -26,8 +26,8 @@ public class ProductCsvDto {
     @CsvCustomBindByName(converter = LocalDateConverterUtil.class)
     private LocalDate expirationDate;
 
-    @CsvBindByName(column = "drugstoreId")
-    private String drugstoreId;
+    @CsvBindByName(column = "price")
+    private Double price;
 
     public ProductCsvDto() {}
 
@@ -55,7 +55,11 @@ public class ProductCsvDto {
 
     public void setExpirationDate(LocalDate expirationDate) { this.expirationDate = expirationDate; }
 
-    public String getDrugstoreId() { return drugstoreId; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public void setDrugstoreId(String drugstoreId) { this.drugstoreId = drugstoreId; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 }

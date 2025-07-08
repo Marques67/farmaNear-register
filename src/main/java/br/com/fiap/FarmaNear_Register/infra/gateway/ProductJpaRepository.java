@@ -40,19 +40,20 @@ public class ProductJpaRepository implements IProductJpaGateway {
     public ProductDto saveProduct(ProductDto productDto) {
 
         Product product = new Product(productDto.name(), productDto.brand(), productDto.quantity(),
-                productDto.dosage(), productDto.type(), productDto.expirationDate(), productDto.drugstoreId());
+                productDto.dosage(), productDto.type(), productDto.expirationDate(), productDto.drugstoreCnpj(),
+                productDto.price());
 
         ProductEntity productEntity = repository.save(product.saveProduct());
 
         return new ProductDto(productEntity.getId(), productEntity.getName(), productEntity.getBrand(),
                 productEntity.getQuantity(), productEntity.getDosage(), productEntity.getType(), productEntity.getExpirationDate(),
-                String.valueOf(productEntity.getDrugstoreId()));
+                productEntity.getDrugstoreCnpj(), productEntity.getPrice());
     }
 
     public List<DrugstoreEntity> getDrugstoreByProduct(String productName) {
         Aggregation aggregation = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("name").is(productName)),
-                Aggregation.lookup("drugstore", "drugstore_id", "_id", "drugstore"),
+                Aggregation.lookup("drugstore", "drugstore_cnpj", "_id", "drugstore"),
                 Aggregation.unwind("drugstore"),
                 Aggregation.replaceRoot("drugstore"));
 

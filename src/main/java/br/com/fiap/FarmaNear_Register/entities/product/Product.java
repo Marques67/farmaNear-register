@@ -13,10 +13,11 @@ public class Product implements ProductEntityInterface {
     private String dosage;
     private String type;
     private LocalDate expirationDate;
-    private String drugstoreId;
+    private Long drugstoreCnpj;
+    private Double price;
 
     public Product(String id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                   String drugstoreId) {
+                   Long drugstoreCnpj, Double price) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -24,18 +25,20 @@ public class Product implements ProductEntityInterface {
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = drugstoreId;
+        this.drugstoreCnpj = drugstoreCnpj;
+        this.price = price;
     }
 
     public Product(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                   String drugstoreId) {
+                   Long drugstoreCnpj, Double price) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = drugstoreId;
+        this.drugstoreCnpj = drugstoreCnpj;
+        this.price = price;
     }
 
     public String getId() {
@@ -66,8 +69,12 @@ public class Product implements ProductEntityInterface {
         return expirationDate;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
     @Override
     public ProductEntity saveProduct() {
-        return new ProductEntity(name, brand, quantity, dosage, type, expirationDate, drugstoreId);
+        return new ProductEntity(name, brand, quantity, dosage, type, expirationDate, drugstoreCnpj, price);
     }
 }

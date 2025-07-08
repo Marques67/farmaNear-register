@@ -36,13 +36,13 @@ public class ProductJpaRepositoryTest {
     @Test
     void shouldSaveNewProductWithSuccess() {
         ProductEntity productEntity = new ProductEntity("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
 
         Product product = new Product("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
@@ -55,16 +55,16 @@ public class ProductJpaRepositoryTest {
         assertEquals(productEntity.getDosage(), result.dosage());
         assertEquals(productEntity.getType(), result.type());
         assertEquals(productEntity.getExpirationDate(), result.expirationDate());
-        assertEquals(productEntity.getDrugstoreId(), new ObjectId(result.drugstoreId()));
+        assertEquals(productEntity.getDrugstoreCnpj(), result.drugstoreCnpj());
     }
 
     @Test
     void shouldSaveAListOfProductsWithSuccess() {
         ProductEntity productEntity = new ProductEntity("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "6865b4254de003cf9bc1aac2");
+                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
@@ -77,7 +77,7 @@ public class ProductJpaRepositoryTest {
         assertEquals(productEntity.getDosage(), resultList.get(0).dosage());
         assertEquals(productEntity.getType(), resultList.get(0).type());
         assertEquals(productEntity.getExpirationDate(), resultList.get(0).expirationDate());
-        assertEquals(productEntity.getDrugstoreId(), new ObjectId(resultList.get(0).drugstoreId()));
+        assertEquals(productEntity.getDrugstoreCnpj(), resultList.get(0).drugstoreCnpj());
     }
 
 }

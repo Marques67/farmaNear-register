@@ -1,5 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
+import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreController;
 import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
@@ -26,13 +27,16 @@ public class RegisterControllerTest {
     @Mock
     private RegisterController registerController;
 
+    @Mock
+    private GetDrugstoreController getDrugstoreController;
+
     private MockMvc mockMvc;
     private AutoCloseable mock;
 
     @BeforeEach
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        registerController = new RegisterController(drugstoreJpaRepository);
+        registerController = new RegisterController(drugstoreJpaRepository, getDrugstoreController);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(registerController)
@@ -52,7 +56,7 @@ public class RegisterControllerTest {
         InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressDto);
 
-        DrugstoreDto drugstoreDto = new DrugstoreDto("111", 70105796000122L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreDto drugstoreDto = new DrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655");
 
         when(drugstoreJpaRepository.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);

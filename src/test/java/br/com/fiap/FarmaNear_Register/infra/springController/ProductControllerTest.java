@@ -1,6 +1,7 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
 import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
+import br.com.fiap.FarmaNear_Register.controller.GetProductsController;
 import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
 import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
@@ -35,6 +36,9 @@ public class ProductControllerTest {
     @Mock
     GetDrugstoreByProductController getProductController;
 
+    @Mock
+    GetProductsController getProductsController;
+
     private MockMvc mockMvc;
 
     private AutoCloseable mock;
@@ -42,7 +46,8 @@ public class ProductControllerTest {
     @BeforeEach
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        productController = new ProductController(uploadCsvController, insertNewProductController, getProductController);
+        productController = new ProductController(uploadCsvController, insertNewProductController,
+                getProductController, getProductsController);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(productController)
@@ -57,7 +62,7 @@ public class ProductControllerTest {
     @Test
     public void saveProduct() throws Exception {
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), "1L");
+                "10mg", "Comprimido", LocalDate.now(), 3211L, 3.86);
 
         when(insertNewProductController.insertNewProduct(productDto)).thenReturn(productDto);
 

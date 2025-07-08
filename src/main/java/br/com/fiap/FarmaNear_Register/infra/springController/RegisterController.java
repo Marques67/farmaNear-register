@@ -15,9 +15,9 @@ public class RegisterController {
     private final DrugstoreJpaRepository drugstoreJpaRepository;
     private final GetDrugstoreController getDrugstoreController;
 
-    public RegisterController(DrugstoreJpaRepository drugstoreJpaRepository, GetDrugstoreController getDrugstoreUseCase) {
+    public RegisterController(DrugstoreJpaRepository drugstoreJpaRepository, GetDrugstoreController getDrugstoreController) {
         this.drugstoreJpaRepository = drugstoreJpaRepository;
-        this.getDrugstoreController = getDrugstoreUseCase;
+        this.getDrugstoreController = getDrugstoreController;
     }
 
     @PostMapping("/drugstore")

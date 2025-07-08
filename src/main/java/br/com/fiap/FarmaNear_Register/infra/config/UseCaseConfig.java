@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    UploadCsvUseCase uploadCsvUseCase(IProductJpaGateway productJpaGateway) {
-        return new UploadCsvUseCase(productJpaGateway);
+    UploadCsvUseCase uploadCsvUseCase(IProductJpaGateway productJpaGateway, GetDrugstoreUseCase getDrugstoreUseCase) {
+        return new UploadCsvUseCase(productJpaGateway, getDrugstoreUseCase);
     }
 
     @Bean

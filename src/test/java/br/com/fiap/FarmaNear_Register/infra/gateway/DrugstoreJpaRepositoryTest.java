@@ -35,7 +35,7 @@ public class DrugstoreJpaRepositoryTest {
         AddressEntity addressEntity = new AddressEntity("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
                 "Rio de Janeiro", "24440874");
 
-        DrugstoreEntity drugstoreEntity = new DrugstoreEntity("111", 70105796000122L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreEntity drugstoreEntity = new DrugstoreEntity(111L, "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressEntity);
 
         AddressDto addressDto = new AddressDto("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
@@ -48,7 +48,6 @@ public class DrugstoreJpaRepositoryTest {
 
         DrugstoreDto result = drugstoreJpaRepository.createDrugstore(insertDrugstoreDto);
 
-        assertNotNull(result.id());
         assertEquals(drugstoreEntity.getCnpj(), result.cnpj());
         assertEquals(drugstoreEntity.getName(), result.name());
         assertEquals(drugstoreEntity.getEmail(), result.email());

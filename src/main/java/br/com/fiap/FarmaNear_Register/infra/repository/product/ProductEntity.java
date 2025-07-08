@@ -1,12 +1,7 @@
 package br.com.fiap.FarmaNear_Register.infra.repository.product;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.Id;
 import lombok.NoArgsConstructor;
-import org.bson.types.ObjectId;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -19,7 +14,6 @@ import java.util.Objects;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
     private String name;
     private String brand;
@@ -29,11 +23,13 @@ public class ProductEntity {
 
     private LocalDate expirationDate;
 
-    @Field("drugstore_id")
-    private ObjectId drugstoreId;
+    @Field("drugstore_cnpj")
+    private Long drugstoreCnpj;
+
+    private Double price;
 
     public ProductEntity(String id, String name, String brand, Integer quantity, String dosage, String type,
-                         LocalDate expirationDate, String drugstoreId) {
+                         LocalDate expirationDate, Long drugstoreCnpj, Double price) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -41,28 +37,36 @@ public class ProductEntity {
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = new ObjectId(drugstoreId);
+        this.drugstoreCnpj = drugstoreCnpj;
+        this.price = price;
     }
 
-    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate, String drugstoreId) {
+    public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
+                         Long drugstoreCnpj, Double price) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
         this.dosage = dosage;
         this.type = type;
         this.expirationDate = expirationDate;
-        this.drugstoreId = new ObjectId(drugstoreId);
+        this.drugstoreCnpj = drugstoreCnpj;
+        this.price = price;
     }
 
     @Override
-    public final boolean equals(Object o) {
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null) return false;
-        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
-        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
-        if (thisEffectiveClass != oEffectiveClass) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ProductEntity that = (ProductEntity) o;
-        return id != null && Objects.equals(id, that.id);
+        return Objects.equals(id, that.id)
+                && Objects.equals(name, that.name)
+                && Objects.equals(brand, that.brand)
+                && Objects.equals(quantity, that.quantity)
+                && Objects.equals(dosage, that.dosage)
+                && Objects.equals(type, that.type)
+                && Objects.equals(expirationDate, that.expirationDate)
+                && Objects.equals(drugstoreCnpj, that.drugstoreCnpj)
+                && Objects.equals(price, that.price);
     }
 
     @Override
@@ -98,7 +102,11 @@ public class ProductEntity {
         return expirationDate;
     }
 
-    public ObjectId getDrugstoreId() {
-        return drugstoreId;
+    public Long getDrugstoreCnpj() {
+        return drugstoreCnpj;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 }

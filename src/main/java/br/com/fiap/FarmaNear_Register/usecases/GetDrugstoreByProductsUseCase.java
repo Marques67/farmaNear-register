@@ -21,7 +21,7 @@ public class GetDrugstoreByProductsUseCase {
 
         var drugstores = productJpaGateway.getDrugstoreByProduct(productName);
         drugstores.forEach(drugstoreEntity -> {
-            DrugstoreDto drugstoreDto = new DrugstoreDto(drugstoreEntity.getId(), drugstoreEntity.getCnpj(),
+            DrugstoreDto drugstoreDto = new DrugstoreDto(drugstoreEntity.getCnpj(),
                     drugstoreEntity.getName(), drugstoreEntity.getEmail(), drugstoreEntity.getPhone());
             drugstoreDtoList.add(drugstoreDto);
         });

@@ -1,7 +1,9 @@
 package br.com.fiap.FarmaNear_Register.usecases;
 
+import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductCsvDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,17 +12,24 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UploadCsvUseCase {
 
     private final IProductJpaGateway productJpaGateway;
 
-    public UploadCsvUseCase(IProductJpaGateway productJpaGateway) {
+    private final GetDrugstoreUseCase getDrugstoreUseCase;
+
+    public UploadCsvUseCase(IProductJpaGateway productJpaGateway, GetDrugstoreUseCase getDrugstoreUseCase) {
         this.productJpaGateway = productJpaGateway;
+        this.getDrugstoreUseCase = getDrugstoreUseCase;
     }
 
-    public List<ProductDto> uploadCsv(MultipartFile file) throws IOException {
+    public List<ProductDto> uploadCsv(MultipartFile file, Long cnpj) throws IOException {
+
+        getDrugstoreUseCase.getDrugstore(cnpj);
+
         List<String> lines = transformFileInString(file);
 
         String csvContent = String.join("\n", lines);
@@ -43,9 +52,11 @@ public class UploadCsvUseCase {
                         p.getDosage(),
                         p.getType(),
                         p.getExpirationDate(),
-                        p.getDrugstoreId()
+                        cnpj,
+                        p.getPrice()
                 ))
                 .collect(Collectors.toList());
+
 
         productJpaGateway.saveProducts(productList);
 
