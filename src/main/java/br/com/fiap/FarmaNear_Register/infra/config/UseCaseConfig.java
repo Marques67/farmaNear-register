@@ -2,6 +2,7 @@ package br.com.fiap.FarmaNear_Register.infra.config;
 
 import br.com.fiap.FarmaNear_Register.interfaces.IDrugstoreJpaGateway;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
+import br.com.fiap.FarmaNear_Register.interfaces.IQueueGateway;
 import br.com.fiap.FarmaNear_Register.usecases.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,8 @@ public class UseCaseConfig {
     }
 
     @Bean
-    CreateDrugstoreUseCase createDrugstoreUseCase(IDrugstoreJpaGateway drugstoreJpaGateway) {
-        return new CreateDrugstoreUseCase(drugstoreJpaGateway);
+    CreateDrugstoreUseCase createDrugstoreUseCase(IDrugstoreJpaGateway drugstoreJpaGateway, IQueueGateway queueGateway) {
+        return new CreateDrugstoreUseCase(drugstoreJpaGateway, queueGateway);
     }
 
     @Bean
