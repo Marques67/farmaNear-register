@@ -24,12 +24,12 @@ public class ProductEntity {
     private LocalDate expirationDate;
 
     @Field("drugstore_cnpj")
-    private Long drugstoreCnpj;
+    private String drugstoreCnpj;
 
     private Double price;
 
     public ProductEntity(String id, String name, String brand, Integer quantity, String dosage, String type,
-                         LocalDate expirationDate, Long drugstoreCnpj, Double price) {
+                         LocalDate expirationDate, String drugstoreCnpj, Double price) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -42,7 +42,7 @@ public class ProductEntity {
     }
 
     public ProductEntity(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                         Long drugstoreCnpj, Double price) {
+                         String drugstoreCnpj, Double price) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;
@@ -102,7 +102,7 @@ public class ProductEntity {
         return expirationDate;
     }
 
-    public Long getDrugstoreCnpj() {
+    public String getDrugstoreCnpj() {
         return drugstoreCnpj;
     }
 

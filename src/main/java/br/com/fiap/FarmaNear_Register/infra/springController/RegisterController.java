@@ -26,7 +26,7 @@ public class RegisterController {
     }
 
     @GetMapping()
-    public ResponseEntity<GetDrugstoreDataDto> getAllDrugstore(@RequestParam Long cnpj) {
+    public ResponseEntity<GetDrugstoreDataDto> getAllDrugstore(@RequestParam String cnpj) {
         return ResponseEntity.ok(getDrugstoreController.getDrugstore(cnpj));
     }
 }

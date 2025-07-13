@@ -11,7 +11,7 @@ public class GetDrugstoreController {
         this.getDrugstoreUseCase = getDrugstoreUseCase;
     }
 
-    public GetDrugstoreDataDto getDrugstore(Long cnpj) {
+    public GetDrugstoreDataDto getDrugstore(String cnpj) {
         return getDrugstoreUseCase.getDrugstore(cnpj);
     }
 }

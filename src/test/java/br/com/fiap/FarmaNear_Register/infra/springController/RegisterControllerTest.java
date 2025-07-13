@@ -53,10 +53,10 @@ public class RegisterControllerTest {
         AddressDto addressDto = new AddressDto("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
                 "Rio de Janeiro", "24440874");
 
-        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
+        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto("70105796000122", "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressDto);
 
-        DrugstoreDto drugstoreDto = new DrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreDto drugstoreDto = new DrugstoreDto("70105796000122", "Farm express", "farm.express@hotmail.com",
                 "21 99988776655");
 
         when(drugstoreJpaRepository.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);

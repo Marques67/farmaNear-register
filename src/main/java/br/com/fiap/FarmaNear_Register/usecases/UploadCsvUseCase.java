@@ -26,7 +26,7 @@ public class UploadCsvUseCase {
         this.getDrugstoreUseCase = getDrugstoreUseCase;
     }
 
-    public List<ProductDto> uploadCsv(MultipartFile file, Long cnpj) throws IOException {
+    public List<ProductDto> uploadCsv(MultipartFile file, String cnpj) throws IOException {
 
         getDrugstoreUseCase.getDrugstore(cnpj);
 

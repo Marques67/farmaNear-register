@@ -11,7 +11,7 @@ import java.util.Set;
 public class DrugstoreEntity {
 
     @Id
-    private Long cnpj;
+    private String cnpj;
     private String name;
     private String email;
     private String phone;
@@ -21,7 +21,7 @@ public class DrugstoreEntity {
     public DrugstoreEntity() {
     }
 
-    public DrugstoreEntity(Long cnpj, String name, String email, String phone, AddressEntity address) {
+    public DrugstoreEntity(String cnpj, String name, String email, String phone, AddressEntity address) {
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
@@ -29,7 +29,7 @@ public class DrugstoreEntity {
         this.address = address;
     }
 
-    public DrugstoreEntity(Long cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
+    public DrugstoreEntity(String cnpj, String name, String email, String phone, AddressEntity address, Set<ProductEntity> products) {
         this.cnpj = cnpj;
         this.name = name;
         this.email = email;
@@ -38,7 +38,7 @@ public class DrugstoreEntity {
         this.products = products;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 

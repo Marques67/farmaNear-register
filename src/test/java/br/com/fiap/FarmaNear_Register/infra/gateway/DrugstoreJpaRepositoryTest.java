@@ -35,13 +35,13 @@ public class DrugstoreJpaRepositoryTest {
         AddressEntity addressEntity = new AddressEntity("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
                 "Rio de Janeiro", "24440874");
 
-        DrugstoreEntity drugstoreEntity = new DrugstoreEntity(111L, "Farm express", "farm.express@hotmail.com",
+        DrugstoreEntity drugstoreEntity = new DrugstoreEntity("111", "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressEntity);
 
         AddressDto addressDto = new AddressDto("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
                 "Rio de Janeiro", "24440874");
 
-        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto(70105796000122L, "Farm express", "farm.express@hotmail.com",
+        InsertDrugstoreDto insertDrugstoreDto = new InsertDrugstoreDto("70105796000122", "Farm express", "farm.express@hotmail.com",
                 "21 99988776655", addressDto);
 
         Mockito.when(drugstoreRepository.save(Mockito.any(DrugstoreEntity.class))).thenReturn(drugstoreEntity);

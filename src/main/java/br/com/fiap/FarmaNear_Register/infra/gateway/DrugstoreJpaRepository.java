@@ -40,7 +40,7 @@ public class DrugstoreJpaRepository implements IDrugstoreJpaGateway {
                 drugstoreEntity.getEmail(), drugstoreEntity.getPhone(), drugstoreAddress);
     }
 
-    public Optional<DrugstoreEntity> getDrugstoreByCnpj(Long cnpj) {
+    public Optional<DrugstoreEntity> getDrugstoreByCnpj(String cnpj) {
         return this.repository.findByCnpj(cnpj);
     }
 }

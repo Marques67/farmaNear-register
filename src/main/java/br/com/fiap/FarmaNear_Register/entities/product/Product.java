@@ -13,11 +13,11 @@ public class Product implements ProductEntityInterface {
     private String dosage;
     private String type;
     private LocalDate expirationDate;
-    private Long drugstoreCnpj;
+    private String drugstoreCnpj;
     private Double price;
 
     public Product(String id, String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                   Long drugstoreCnpj, Double price) {
+                   String drugstoreCnpj, Double price) {
         this.id = id;
         this.name = name;
         this.brand = brand;
@@ -30,7 +30,7 @@ public class Product implements ProductEntityInterface {
     }
 
     public Product(String name, String brand, Integer quantity, String dosage, String type, LocalDate expirationDate,
-                   Long drugstoreCnpj, Double price) {
+                   String drugstoreCnpj, Double price) {
         this.name = name;
         this.brand = brand;
         this.quantity = quantity;

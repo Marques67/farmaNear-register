@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface DrugstoreRepository extends MongoRepository<DrugstoreEntity, Long> {
 
-    Optional<DrugstoreEntity> findByCnpj(Long cnpj);
+    Optional<DrugstoreEntity> findByCnpj(String cnpj);
 }

@@ -2,7 +2,7 @@ package br.com.fiap.FarmaNear_Register.controller.dto;
 
 import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 
-public record GetDrugstoreDataDto(Long cnpj, String name, String email, String phone, AddressDto address) {
+public record GetDrugstoreDataDto(String cnpj, String name, String email, String phone, AddressDto address) {
 
     public GetDrugstoreDataDto(DrugstoreEntity drugstoreEntity) {
         this(drugstoreEntity.getCnpj(),

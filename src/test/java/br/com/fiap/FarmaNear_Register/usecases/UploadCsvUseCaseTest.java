@@ -1,6 +1,9 @@
 package br.com.fiap.FarmaNear_Register.usecases;
 
+import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import br.com.fiap.FarmaNear_Register.infra.repository.address.AddressEntity;
+import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,6 +30,9 @@ public class UploadCsvUseCaseTest {
     @InjectMocks
     private UploadCsvUseCase uploadCsvUseCase;
 
+    @Mock
+    private GetDrugstoreUseCase getDrugstoreUseCase;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -46,17 +52,24 @@ public class UploadCsvUseCaseTest {
                 csvContent.getBytes(StandardCharsets.UTF_8)
         );
 
+        AddressEntity addressEntity = new AddressEntity("Rua Jose Bonifacio", "150", "Apto 201", "Rio de Janeiro",
+                "Rio de Janeiro", "24440874");
+
+        DrugstoreEntity drugstoreEntity = new DrugstoreEntity("111", "Farm express", "farm.express@hotmail.com",
+                "21 99988776655", addressEntity);
+
         ProductDto product1 = new ProductDto("111", "Dorflex", "Dorflex", 10,
                 "10mg", "Comprimido", LocalDate.of(2025, 12, 31),
-                686543L, 3.86);
+                "686543", 3.86);
         ProductDto product2 = new ProductDto("222", "Paracetamol", "Medley", 10,
                 "750mg", "Antitérmico", LocalDate.of(2026, 01, 15),
-                686543L, 4.00);
+                "686543", 4.00);
         List<ProductDto> expectedProducts = List.of(product1, product2);
 
         Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(List.of());
+        Mockito.when(getDrugstoreUseCase.getDrugstore(any())).thenReturn(new GetDrugstoreDataDto(drugstoreEntity));
 
-        List<ProductDto> result = uploadCsvUseCase.uploadCsv(file, 686543L);
+        List<ProductDto> result = uploadCsvUseCase.uploadCsv(file, "686543");
 
         Assertions.assertEquals(2, result.size());
         Assertions.assertEquals("Dorflex", result.get(0).name());
@@ -76,7 +89,7 @@ public class UploadCsvUseCaseTest {
         );
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            uploadCsvUseCase.uploadCsv(file, 686543L);
+            uploadCsvUseCase.uploadCsv(file, "686543");
         });
 
         Assertions.assertEquals("Invalid file. Submit a CSV.", exception.getMessage());
@@ -93,7 +106,7 @@ public class UploadCsvUseCaseTest {
         );
 
         IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            uploadCsvUseCase.uploadCsv(file, 686543L);
+            uploadCsvUseCase.uploadCsv(file, "686543");
         });
 
         Assertions.assertEquals("Invalid file. Submit a CSV.", exception.getMessage());

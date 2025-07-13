@@ -15,7 +15,7 @@ public class UploadCsvController {
         this.uploadCsvUseCase = uploadCsvUseCase;
     }
 
-    public List<ProductDto> uploadCsv(MultipartFile file, Long drugstoreCnpj) throws IOException {
+    public List<ProductDto> uploadCsv(MultipartFile file, String drugstoreCnpj) throws IOException {
         return this.uploadCsvUseCase.uploadCsv(file, drugstoreCnpj);
     }
 }

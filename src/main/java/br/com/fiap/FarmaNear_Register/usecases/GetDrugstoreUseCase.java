@@ -14,7 +14,7 @@ public class GetDrugstoreUseCase {
         this.drugstoreJpaGateway = drugstoreJpaGateway;
     }
 
-    public GetDrugstoreDataDto getDrugstore(Long cnpj) {
+    public GetDrugstoreDataDto getDrugstore(String cnpj) {
         Optional<DrugstoreEntity> drugstoreEntityOptional = drugstoreJpaGateway.getDrugstoreByCnpj(cnpj);
 
         if (drugstoreEntityOptional.isPresent()) {

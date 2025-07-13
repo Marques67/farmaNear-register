@@ -36,13 +36,13 @@ public class ProductJpaRepositoryTest {
     @Test
     void shouldSaveNewProductWithSuccess() {
         ProductEntity productEntity = new ProductEntity("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
+                "10mg", "Comprimido", LocalDate.now(), "6865654", 3.86);
 
         Product product = new Product("111", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
+                "10mg", "Comprimido", LocalDate.now(), "6865654", 3.86);
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
+                "10mg", "Comprimido", LocalDate.now(), "6865654", 3.86);
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 
@@ -61,10 +61,10 @@ public class ProductJpaRepositoryTest {
     @Test
     void shouldSaveAListOfProductsWithSuccess() {
         ProductEntity productEntity = new ProductEntity("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
+                "10mg", "Comprimido", LocalDate.now(), "6865654", 3.86);
 
         ProductDto productDto = new ProductDto("1L", "Dorflex - Relaxante muscular", "Dorflex", 10,
-                "10mg", "Comprimido", LocalDate.now(), 6865654L, 3.86);
+                "10mg", "Comprimido", LocalDate.now(), "6865654", 3.86);
 
         Mockito.when(productRepository.save(Mockito.any(ProductEntity.class))).thenReturn(productEntity);
 

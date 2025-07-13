@@ -10,5 +10,5 @@ public interface IDrugstoreJpaGateway {
 
     DrugstoreDto createDrugstore(InsertDrugstoreDto insertDrugstoreDto);
 
-    Optional<DrugstoreEntity> getDrugstoreByCnpj(Long cnpj);
+    Optional<DrugstoreEntity> getDrugstoreByCnpj(String cnpj);
 }
