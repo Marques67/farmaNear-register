@@ -4,7 +4,7 @@ WORKDIR /app
 
 ENV DB_URL=mongodb://farmNear:27017/farmNear
 
-COPY target/farmNear-0.0.1-SNAPSHOT.jar app.jar
+COPY target/FarmaNear-Register-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
