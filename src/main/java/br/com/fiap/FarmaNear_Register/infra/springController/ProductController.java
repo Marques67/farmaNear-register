@@ -4,9 +4,9 @@ import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController
 import br.com.fiap.FarmaNear_Register.controller.GetProductsController;
 import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
 import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
-import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreByProductDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,20 +32,32 @@ public class ProductController {
     }
 
     @PostMapping(value = "/upload-csv/{drugstoreCnpj}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public List<ProductDto> uploadCsv(@RequestParam("file") MultipartFile file,
-                                      @PathVariable String drugstoreCnpj) throws Exception {
-        return uploadCsvController.uploadCsv(file, drugstoreCnpj);
+    public ResponseEntity<?> uploadCsv(@RequestParam("file") MultipartFile file,
+                                       @PathVariable String drugstoreCnpj) throws Exception {
+        try {
+            return ResponseEntity.ok(uploadCsvController.uploadCsv(file, drugstoreCnpj));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+
     }
 
     @PostMapping
-    public ResponseEntity<ProductDto> importNewProduct(@RequestBody ProductDto productDto) {
-        ProductDto productSaved = insertNewProductController.insertNewProduct(productDto);
-        return ResponseEntity.ok(productSaved);
+    public ResponseEntity<?> importNewProduct(@RequestBody ProductDto productDto) {
+        try {
+            return ResponseEntity.ok(insertNewProductController.insertNewProduct(productDto));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
     @GetMapping
-    public ResponseEntity<GetDrugstoreByProductDto> getDrugstoreByProduct(@RequestParam String productName) {
-     return ResponseEntity.ok(getDrugstoreByProductController.getDrugstoreByProduct(productName));
+    public ResponseEntity<?> getDrugstoreByProduct(@RequestParam String productName) {
+        try {
+            return ResponseEntity.ok(getDrugstoreByProductController.getDrugstoreByProduct(productName));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @GetMapping("/getProducts")

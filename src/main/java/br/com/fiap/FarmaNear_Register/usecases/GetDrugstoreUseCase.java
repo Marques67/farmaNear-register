@@ -21,7 +21,7 @@ public class GetDrugstoreUseCase {
             DrugstoreEntity drugstore = drugstoreEntityOptional.get();
             return new GetDrugstoreDataDto(drugstore);
         } else {
-            throw new RuntimeException("Drugstore not found");
+            throw new RuntimeException("Drugstore not found for CNPJ: " + cnpj);
         }
     }
 }

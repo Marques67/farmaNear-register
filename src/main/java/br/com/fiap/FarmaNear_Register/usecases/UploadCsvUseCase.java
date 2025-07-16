@@ -1,9 +1,7 @@
 package br.com.fiap.FarmaNear_Register.usecases;
 
-import br.com.fiap.FarmaNear_Register.controller.dto.GetDrugstoreDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductCsvDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
-import br.com.fiap.FarmaNear_Register.infra.repository.drugstore.DrugstoreEntity;
 import br.com.fiap.FarmaNear_Register.interfaces.IProductJpaGateway;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,7 +10,6 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UploadCsvUseCase {
@@ -57,10 +54,7 @@ public class UploadCsvUseCase {
                 ))
                 .collect(Collectors.toList());
 
-
-        productJpaGateway.saveProducts(productList);
-
-        return productList;
+        return productJpaGateway.saveProducts(productList);
     }
 
     private static List<String> transformFileInString(MultipartFile file) throws IOException {

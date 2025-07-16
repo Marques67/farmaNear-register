@@ -5,6 +5,7 @@ import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
 import br.com.fiap.FarmaNear_Register.infra.gateway.DrugstoreJpaRepository;
+import br.com.fiap.FarmaNear_Register.usecases.CreateDrugstoreUseCase;
 import br.com.fiap.FarmaNear_Register.utils.JsonFormatUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class RegisterControllerTest {
 
     @Mock
-    private DrugstoreJpaRepository drugstoreJpaRepository;
+    private CreateDrugstoreUseCase createDrugstoreUseCase;
 
     @Mock
     private RegisterController registerController;
@@ -36,7 +37,7 @@ public class RegisterControllerTest {
     @BeforeEach
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        registerController = new RegisterController(drugstoreJpaRepository, getDrugstoreController);
+        registerController = new RegisterController(createDrugstoreUseCase, getDrugstoreController);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(registerController)
@@ -59,14 +60,14 @@ public class RegisterControllerTest {
         DrugstoreDto drugstoreDto = new DrugstoreDto("70105796000122", "Farm express", "farm.express@hotmail.com",
                 "21 99988776655");
 
-        when(drugstoreJpaRepository.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);
+        when(createDrugstoreUseCase.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);
 
         mockMvc.perform(post("/register/drugstore")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonFormatUtil.asJsonString(insertDrugstoreDto))
         ).andExpect(status().isOk());
 
-        verify(drugstoreJpaRepository, times(1)).createDrugstore(insertDrugstoreDto);
+        verify(createDrugstoreUseCase, times(1)).createDrugstore(insertDrugstoreDto);
     }
 
 }

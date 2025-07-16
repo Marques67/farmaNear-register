@@ -16,8 +16,8 @@ public class UseCaseConfig {
     }
 
     @Bean
-    InsertNewProductUseCase insertNewProductUseCase(IProductJpaGateway productJpaGateway) {
-        return new InsertNewProductUseCase(productJpaGateway);
+    InsertNewProductUseCase insertNewProductUseCase(IProductJpaGateway productJpaGateway, GetDrugstoreUseCase getDrugstoreUseCase) {
+        return new InsertNewProductUseCase(productJpaGateway, getDrugstoreUseCase);
     }
 
     @Bean

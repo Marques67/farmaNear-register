@@ -66,7 +66,7 @@ public class UploadCsvUseCaseTest {
                 "686543", 4.00);
         List<ProductDto> expectedProducts = List.of(product1, product2);
 
-        Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(List.of());
+        Mockito.when(productJpaGateway.saveProducts(any())).thenReturn(expectedProducts);
         Mockito.when(getDrugstoreUseCase.getDrugstore(any())).thenReturn(new GetDrugstoreDataDto(drugstoreEntity));
 
         List<ProductDto> result = uploadCsvUseCase.uploadCsv(file, "686543");

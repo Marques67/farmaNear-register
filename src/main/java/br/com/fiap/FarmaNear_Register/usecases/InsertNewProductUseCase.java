@@ -7,11 +7,15 @@ public class InsertNewProductUseCase {
 
     private final IProductJpaGateway productJpaGateway;
 
-    public InsertNewProductUseCase(IProductJpaGateway productJpaGateway) {
+    private final GetDrugstoreUseCase getDrugstoreUseCase;
+
+    public InsertNewProductUseCase(IProductJpaGateway productJpaGateway, GetDrugstoreUseCase getDrugstoreUseCase) {
         this.productJpaGateway = productJpaGateway;
+        this.getDrugstoreUseCase = getDrugstoreUseCase;
     }
 
     public ProductDto insertNewProduct(ProductDto productDto) {
+        getDrugstoreUseCase.getDrugstore(productDto.drugstoreCnpj());
         return productJpaGateway.saveProduct(productDto);
     }
 }
