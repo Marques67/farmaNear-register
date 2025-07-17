@@ -4,7 +4,6 @@ import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreController;
 import br.com.fiap.FarmaNear_Register.controller.dto.AddressDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.DrugstoreDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.InsertDrugstoreDto;
-import br.com.fiap.FarmaNear_Register.infra.gateway.DrugstoreJpaRepository;
 import br.com.fiap.FarmaNear_Register.usecases.CreateDrugstoreUseCase;
 import br.com.fiap.FarmaNear_Register.utils.JsonFormatUtil;
 import org.junit.jupiter.api.AfterEach;
@@ -20,13 +19,13 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class RegisterControllerTest {
+public class DrugstoreControllerTest {
 
     @Mock
     private CreateDrugstoreUseCase createDrugstoreUseCase;
 
     @Mock
-    private RegisterController registerController;
+    private DrugstoreController drugstoreController;
 
     @Mock
     private GetDrugstoreController getDrugstoreController;
@@ -37,10 +36,10 @@ public class RegisterControllerTest {
     @BeforeEach
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
-        registerController = new RegisterController(createDrugstoreUseCase, getDrugstoreController);
+        drugstoreController = new DrugstoreController(createDrugstoreUseCase, getDrugstoreController);
 
         mockMvc = MockMvcBuilders
-                .standaloneSetup(registerController)
+                .standaloneSetup(drugstoreController)
                 .build();
     }
 
@@ -62,7 +61,7 @@ public class RegisterControllerTest {
 
         when(createDrugstoreUseCase.createDrugstore(insertDrugstoreDto)).thenReturn(drugstoreDto);
 
-        mockMvc.perform(post("/register/drugstore")
+        mockMvc.perform(post("/drugstore/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonFormatUtil.asJsonString(insertDrugstoreDto))
         ).andExpect(status().isOk());
