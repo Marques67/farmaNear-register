@@ -53,7 +53,7 @@ public class ProductJpaRepository implements IProductJpaGateway {
     public List<DrugstoreEntity> getDrugstoreByProduct(String productName) {
         Aggregation aggregation = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("name").is(productName)),
-                Aggregation.lookup("drugstore", "drugstore_cnpj", "_id", "drugstore"),
+                Aggregation.lookup("drugstore", "drugstorecnpj", "_id", "drugstore"),
                 Aggregation.unwind("drugstore"),
                 Aggregation.replaceRoot("drugstore"));
 
