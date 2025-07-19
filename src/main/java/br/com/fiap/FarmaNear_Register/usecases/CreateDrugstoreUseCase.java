@@ -30,6 +30,6 @@ public class CreateDrugstoreUseCase {
 
         queueGateway.sendDrugstoreToQueue(new QueueDrugstoreData(insertDrugstoreDto.cnpj(), insertDrugstoreDto.address()));
 
-        return drugstore ;
+        return drugstore;
     }
 }

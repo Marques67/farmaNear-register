@@ -17,4 +17,6 @@ public interface IProductJpaGateway {
     List<DrugstoreEntity> getDrugstoreByProduct(String productName);
 
     List<GetProductDataDto> getProducts(String name);
+
+    List<GetProductDataDto> getProductsByCnpj(String cnpj);
 }

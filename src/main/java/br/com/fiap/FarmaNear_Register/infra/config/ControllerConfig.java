@@ -38,4 +38,9 @@ public class ControllerConfig {
     GetProductsController getProductsController(GetProductsUseCase getProductsUseCase) {
         return new GetProductsController(getProductsUseCase);
     }
+
+    @Bean
+    GetProductsByCnpjController getProductsByCnpjController(GetProductsByCnpjUseCase getProductsByCnpjUseCase) {
+        return new GetProductsByCnpjController(getProductsByCnpjUseCase);
+    }
 }

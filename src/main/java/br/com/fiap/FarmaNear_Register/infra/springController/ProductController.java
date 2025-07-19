@@ -1,9 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
-import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
-import br.com.fiap.FarmaNear_Register.controller.GetProductsController;
-import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
-import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
+import br.com.fiap.FarmaNear_Register.controller.*;
 import br.com.fiap.FarmaNear_Register.controller.dto.GetProductDataDto;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import org.springframework.http.HttpStatus;
@@ -22,13 +19,16 @@ public class ProductController {
     private final InsertNewProductController insertNewProductController;
     private final GetDrugstoreByProductController getDrugstoreByProductController;
     private final GetProductsController getProductsController;
+    private final GetProductsByCnpjController getProductsByCnpjController;
 
     public ProductController(UploadCsvController uploadCsvController, InsertNewProductController insertNewProductController,
-                             GetDrugstoreByProductController getProductController, GetProductsController getProductsController) {
+                             GetDrugstoreByProductController getProductController, GetProductsController getProductsController,
+                             GetProductsByCnpjController getProductsByCnpjController) {
         this.uploadCsvController = uploadCsvController;
         this.insertNewProductController = insertNewProductController;
         this.getDrugstoreByProductController = getProductController;
         this.getProductsController = getProductsController;
+        this.getProductsByCnpjController = getProductsByCnpjController;
     }
 
     @PostMapping(value = "/upload-csv/{drugstoreCnpj}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -63,5 +63,10 @@ public class ProductController {
     @GetMapping("/getProducts")
     public ResponseEntity<List<GetProductDataDto>> getProducts(@RequestBody String productName) {
         return ResponseEntity.ok(getProductsController.getProducts(productName));
+    }
+
+    @GetMapping("/getProductsByCnpj")
+    public ResponseEntity<List<GetProductDataDto>> getProductsByCnpj(@RequestParam String cnpj) {
+        return ResponseEntity.ok(getProductsByCnpjController.getProducts(cnpj));
     }
 }

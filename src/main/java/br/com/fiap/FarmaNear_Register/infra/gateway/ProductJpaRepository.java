@@ -66,4 +66,10 @@ public class ProductJpaRepository implements IProductJpaGateway {
 
         return productsEntities.stream().map(GetProductDataDto::new).toList();
     }
+
+    public List<GetProductDataDto> getProductsByCnpj(String cnpj) {
+        var productsEntities = repository.findAllByDrugstoreCnpj(cnpj);
+
+        return productsEntities.stream().map(GetProductDataDto::new).toList();
+    }
 }

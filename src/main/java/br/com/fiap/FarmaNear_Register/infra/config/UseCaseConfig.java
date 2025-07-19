@@ -44,4 +44,9 @@ public class UseCaseConfig {
     TokenUseCase tokenUseCase() {
         return new TokenUseCase();
     }
+
+    @Bean
+    GetProductsByCnpjUseCase getProductsByCnpjUseCase(IProductJpaGateway productJpaGateway) {
+        return new GetProductsByCnpjUseCase(productJpaGateway);
+    }
 }
