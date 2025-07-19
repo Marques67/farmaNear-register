@@ -51,7 +51,7 @@ public class ProductController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/getDrugstoreByProduct")
     public ResponseEntity<?> getDrugstoreByProduct(@RequestParam String productName) {
         try {
             return ResponseEntity.ok(getDrugstoreByProductController.getDrugstoreByProduct(productName));
