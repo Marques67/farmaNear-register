@@ -1,9 +1,6 @@
 package br.com.fiap.FarmaNear_Register.infra.springController;
 
-import br.com.fiap.FarmaNear_Register.controller.GetDrugstoreByProductController;
-import br.com.fiap.FarmaNear_Register.controller.GetProductsController;
-import br.com.fiap.FarmaNear_Register.controller.InsertNewProductController;
-import br.com.fiap.FarmaNear_Register.controller.UploadCsvController;
+import br.com.fiap.FarmaNear_Register.controller.*;
 import br.com.fiap.FarmaNear_Register.controller.dto.ProductDto;
 import br.com.fiap.FarmaNear_Register.infra.gateway.ProductJpaRepository;
 import br.com.fiap.FarmaNear_Register.utils.JsonFormatUtil;
@@ -39,6 +36,9 @@ public class ProductControllerTest {
     @Mock
     GetProductsController getProductsController;
 
+    @Mock
+    GetProductsByCnpjController getProductsByCnpjController;
+
     private MockMvc mockMvc;
 
     private AutoCloseable mock;
@@ -47,7 +47,7 @@ public class ProductControllerTest {
     public void setup() {
         mock = MockitoAnnotations.openMocks(this);
         productController = new ProductController(uploadCsvController, insertNewProductController,
-                getProductController, getProductsController);
+                getProductController, getProductsController, getProductsByCnpjController);
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(productController)
