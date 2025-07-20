@@ -32,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/upload-csv/{drugstoreCnpj}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadCsv(@RequestParam("file") MultipartFile file,
+    public ResponseEntity<?> uploadCsv(@RequestPart("file") MultipartFile file,
                                        @PathVariable String drugstoreCnpj) throws Exception {
         try {
             return ResponseEntity.ok(uploadCsvController.uploadCsv(file, drugstoreCnpj));
