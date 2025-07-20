@@ -31,11 +31,12 @@ public class ProductController {
         this.getProductsByCnpjController = getProductsByCnpjController;
     }
 
-    @PostMapping(value = "/upload-csv/{drugstoreCnpj}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload-csv/{drugstoreCnpj}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> uploadCsv(@RequestPart("file") MultipartFile file,
                                        @PathVariable String drugstoreCnpj) throws Exception {
         try {
-            return ResponseEntity.ok(uploadCsvController.uploadCsv(file, drugstoreCnpj));
+            List<ProductDto> productDtos = uploadCsvController.uploadCsv(file, drugstoreCnpj);
+            return ResponseEntity.ok(productDtos);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

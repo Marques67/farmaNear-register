@@ -23,10 +23,13 @@ public class ProductEntity {
 
     private LocalDate expirationDate;
 
-    @Field("drugstore_cnpj")
+    @Field("drugstorecnpj")
     private String drugstoreCnpj;
 
     private Double price;
+
+    public ProductEntity() {
+    }
 
     public ProductEntity(String id, String name, String brand, Integer quantity, String dosage, String type,
                          LocalDate expirationDate, String drugstoreCnpj, Double price) {
